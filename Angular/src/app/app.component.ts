@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { Customer, Service, CellInfo, SelectedRange } from './app.service';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { CellHoverChangedEvent, CellClickEvent, CellPreparedEvent } from 'devextreme/ui/data_grid';
+import { CellClickEvent, CellPreparedEvent, ContentReadyEvent } from 'devextreme/ui/data_grid';
 
 @Component({
   selector: 'app-root',
@@ -55,6 +55,10 @@ export class AppComponent implements AfterViewInit{
     this.foreachRange(selectedRange, function(rowIndex:Number, columnIndex:Number) {
       component.getCellElement(rowIndex, columnIndex).classList.add("cell-selected");
     });
+  }
+
+  onContentReady(e:ContentReadyEvent){
+    this.data = [];
   }
   onCellPrepared(e: CellPreparedEvent){
     if(e.rowType === "data") this.cellInfos.push(
@@ -111,6 +115,7 @@ export class AppComponent implements AfterViewInit{
   }
 
   onCellClick(e:CellClickEvent) { //Save the first hovered cell
+    if(e.rowType !== "data") return;
     if (e.event && e.event.ctrlKey === true && e.event.shiftKey === false) { //selects or deselects a single cell when Ctrl + Left Click
       if (e.cellElement.classList.contains("cell-selected")) {
         this.data = this.data.filter((item:any) => !(item.rowIndex === e.rowIndex && item.columnIndex === e.columnIndex));
