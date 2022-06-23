@@ -1,0 +1,13 @@
+.cell-selected {
+  background-color: lightgreen;
+}
+
+.dx-datagrid {
+  user-select: none;
+}
+
+.selected-data{
+  margin-top: 10px;
+  overflow-y: scroll;
+  max-height: 200px;
+}
