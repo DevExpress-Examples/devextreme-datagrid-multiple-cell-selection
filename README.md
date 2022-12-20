@@ -35,4 +35,6 @@ The `touchmove` and `touchstart` events are used to ensure this example also wor
 
 ## More Examples
 
+- [DataGrid for DevExtreme - How to obtain all filtered and sorted rows](https://github.com/DevExpress-Examples/devextreme-datagrid-get-all-filtered-data)
 
+- [DataGrid for DevExtreme - How to implement a custom editing form using the Popup and Form components](https://github.com/DevExpress-Examples/devextreme-datagrid-custom-editing-form)
