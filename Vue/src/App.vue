@@ -52,7 +52,6 @@ export default {
       dataSource: customers,
       columns: ['CompanyName', 'City', 'State', 'Phone', 'Fax'],
       selectedRange: {},
-      shiftSelectRange: {},
       isSelectionStopped: true,
       cellInfos: [],
       dataGridRefKey,
@@ -165,12 +164,10 @@ export default {
       ) {
         //Selection via Shift + Left Click
 
-        this.shiftSelectRange.endRowIndex = e.rowIndex;
-        this.shiftSelectRange.endColumnIndex = e.columnIndex;
+        this.selectedRange.endRowIndex = e.rowIndex;
+        this.selectedRange.endColumnIndex = e.columnIndex;
         this.showSelection();
       } else {
-        this.shiftSelectRange.startRowIndex = e.rowIndex;
-        this.shiftSelectRange.startColumnIndex = e.columnIndex;
         this.selectedRange.startRowIndex = this.selectedRange.endRowIndex =
           e.rowIndex;
         this.selectedRange.startColumnIndex =
