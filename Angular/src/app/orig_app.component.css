@@ -1,0 +1,13 @@
+::ng-deep .cell-selected {
+    background-color: lightgreen;
+}
+
+::ng-deep .dx-datagrid {
+    user-select: none;
+}
+
+::ng-deep .selected-data{
+    margin-top: 10px;
+    overflow-y: scroll;
+    max-height: 200px;
+}
