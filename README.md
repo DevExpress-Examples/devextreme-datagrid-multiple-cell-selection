@@ -1,5 +1,4 @@
 <!-- default badges list -->
-![](https://img.shields.io/endpoint?url=https://codecentral.devexpress.com/api/v1/VersionRange/486527353/25.1.3%2B)
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/T1085435)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 [![](https://img.shields.io/badge/💬_Leave_Feedback-feecdd?style=flat-square)](#does-this-example-address-your-development-requirementsobjectives)
@@ -10,7 +9,7 @@ This example illustrates how to implement multiple cell selection for DataGrid.
 
 ![Multiple Cell Selection](multiple-cell-selection.gif)
 
-Use the [onCellHoverChanged](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onCellHoverChanged) and [onCellClick](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onCellClick) event handlers to implement cell selection. The [cellValue](https://js.devexpress.com/Documentation/ApiReference/UI_Components/dxDataGrid/Methods/#cellValuerowIndex_visibleColumnIndex_value) method uses cells' `columnIndex` and `rowIndex` properties to display the corresponding cell values.
+Use the [onCellHoverChanged](https://js.devexpress.com/jQuery/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onCellHoverChanged) and [onCellClick](https://js.devexpress.com/jQuery/Documentation/ApiReference/UI_Components/dxDataGrid/Configuration/#onCellClick) event handlers to implement cell selection. The [cellValue](https://js.devexpress.com/jQuery/Documentation/ApiReference/UI_Components/dxDataGrid/Methods/#cellValuerowIndex_visibleColumnIndex_value) method uses cells' `columnIndex` and `rowIndex` properties to display the corresponding cell values.
 
 The `touchmove` and `touchstart` events are used to ensure this example also works on mobile devices.
 
@@ -20,19 +19,20 @@ The `touchmove` and `touchstart` events are used to ensure this example also wor
     - [app.component.html](Angular/src/app/app.component.html)
     - [app.component.ts](Angular/src/app/app.component.ts)
 - **jQuery**
-    - [index.js](jQuery/index.js)
+    - [index.js](jQuery/src/index.js)
 - **React**
-    - [App.js](React/src/App.js)
+    - [App.js](React/src/App.tsx)
 - **Vue**
-    - [App.vue](Vue/src/App.vue)
-- **NetCore**
-    - [Index.cshtml](ASP/ASPMultipleSelection/Views/Home/Index.cshtml)
+    - [App.vue](Vue/src/components/HomeContent.vue)
+- **ASP.NET Core**
+    - [HomeController.cs](ASP.NET%20Core/Controllers/HomeController.cs)
+    - [Index.cshtml](ASP.NET%20Core/Views/Home/Index.cshtml)
 
 ## Documentation
 
-- [Getting Started with DataGrid](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/)
+- [Getting Started with DataGrid](https://js.devexpress.com/jQuery/Documentation/Guide/UI_Components/DataGrid/Getting_Started_with_DataGrid/)
 
-- [DataGrid - Selection](https://js.devexpress.com/Documentation/Guide/UI_Components/DataGrid/Selection/)
+- [DataGrid - Selection](https://js.devexpress.com/jQuery/Documentation/Guide/UI_Components/DataGrid/Selection/)
 
 ## More Examples
 

@@ -1,4 +1,16 @@
-export const customers = [
+export interface Customer {
+  ID: number;
+  CompanyName: string;
+  Address: string;
+  City: string;
+  State: string;
+  Zipcode: number;
+  Phone: string;
+  Fax: string;
+  Website: string;
+}
+
+export const customers: Customer[] = [
   {
     ID: 1,
     CompanyName: 'Super Mart of the West',
@@ -34,7 +46,7 @@ export const customers = [
   },
   {
     ID: 4,
-    CompanyName: "Tom's Club",
+    CompanyName: 'Tom\'s Club',
     Address: '999 Lake Drive',
     City: 'Issaquah',
     State: 'Washington',

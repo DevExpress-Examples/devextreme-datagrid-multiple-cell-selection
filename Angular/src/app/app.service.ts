@@ -1,4 +1,36 @@
-export const customers = [
+import { Injectable } from '@angular/core';
+
+export interface Customer {
+  ID: number;
+  CompanyName: string;
+  Address: string;
+  City: string;
+  State: string;
+  Zipcode: number;
+  Phone: string;
+  Fax: string;
+  Website: string;
+}
+
+export interface CellInfo {
+  cellElement: HTMLElement;
+  rowIndex: number;
+  columnIndex: number;
+}
+
+export interface CellData {
+  rowIndex: number;
+  columnIndex: number;
+}
+
+export interface SelectedRange {
+  startRowIndex?: number;
+  endRowIndex?: number;
+  startColumnIndex?: number;
+  endColumnIndex?: number;
+}
+
+const customers: Customer[] = [
   {
     ID: 1,
     CompanyName: 'Super Mart of the West',
@@ -34,7 +66,7 @@ export const customers = [
   },
   {
     ID: 4,
-    CompanyName: "Tom's Club",
+    CompanyName: 'Tom\'s Club',
     Address: '999 Lake Drive',
     City: 'Issaquah',
     State: 'Washington',
@@ -132,3 +164,10 @@ export const customers = [
     Website: 'http://www.nowebsitescreenshop.com',
   },
 ];
+
+@Injectable()
+export class Service {
+  getCustomers(): Customer[] {
+    return customers;
+  }
+}
