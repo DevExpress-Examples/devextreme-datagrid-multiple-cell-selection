@@ -1,3 +1,19 @@
-<div class="default-style">
-  <dx-button [text]="buttonText" (onClick)="onClick($event)"></dx-button>
+<dx-data-grid
+  id="gridContainer"
+  [dataSource]="customers"
+  keyExpr="ID"
+  [columns]="['CompanyName', 'City', 'State', 'Phone', 'Fax']"
+  [showBorders]="true"
+  (onCellHoverChanged)="onCellHoverChanged($event)"
+  (onCellClick)="onCellClick($event)"
+  (onCellPrepared)="onCellPrepared($event)"
+  (onContentReady)="onContentReady()"
+>
+</dx-data-grid>
+<div class="selected-data">
+  <h3 class="caption">Selected Cells:</h3>
+
+  <ul>
+    <li *ngFor="let info of data">{{ getCellValue(info) }}</li>
+  </ul>
 </div>
