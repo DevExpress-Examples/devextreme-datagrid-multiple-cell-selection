@@ -11,7 +11,7 @@ The cells are selected via the DataGrid's [onCellHoverChanged](https://js.devexp
 
 Additionally, this example works on mobile devices via the touchmove and touchstart events.
 <!-- feedback -->
-## Does this example address your development requirements/objectives?
+## Does This Example Address Your Development Requirements/Objectives?
 
 [<img src="https://www.devexpress.com/support/examples/i/yes-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=devextreme-datagrid-multiple-cell-selection&~~~was_helpful=yes) [<img src="https://www.devexpress.com/support/examples/i/no-button.svg"/>](https://www.devexpress.com/support/examples/survey.xml?utm_source=github&utm_campaign=devextreme-datagrid-multiple-cell-selection&~~~was_helpful=no)
 
