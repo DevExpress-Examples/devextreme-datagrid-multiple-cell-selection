@@ -36,45 +36,25 @@ function App(): JSX.Element {
   const dataGrid = useRef<DataGridRef>(null);
   const [data, setData] = useState<CellData[]>([]);
 
-  useEffect(() => {
-    const gridInstance = dataGrid.current?.instance();
-    if (!gridInstance) return;
-
-    const dataGridElement = gridInstance.element();
-    dataGridElement.addEventListener('touchmove', (args: TouchEvent) => {
-      const event = args.touches[0];
-      const element = document.elementFromPoint(
-        event.clientX,
-        event.clientY,
-      ) as HTMLElement;
-      const cellInfo = cellsInfo.filter((x) => x.cellElement === element)[0];
-      if (cellInfo) {
-        selectedRange.endRowIndex = cellInfo.rowIndex;
-        selectedRange.endColumnIndex = cellInfo.columnIndex;
-        showSelection(gridInstance, selectedRange);
-      }
-    });
-  }, []);
-
   const foreachRange = useCallback(
-    (selectedRange: SelectedRange, func: (rowIndex: number, columnIndex: number) => void): void => {
+    (range: SelectedRange, func: (rowIndex: number, columnIndex: number) => void): void => {
       const dataTemp: CellData[] = [];
-      if (selectedRange.startRowIndex !== undefined && selectedRange.startRowIndex >= 0) {
+      if (range.startRowIndex !== undefined && range.startRowIndex >= 0) {
         const minRowIndex = Math.min(
-          selectedRange.startRowIndex,
-          selectedRange.endRowIndex ?? selectedRange.startRowIndex,
+          range.startRowIndex,
+          range.endRowIndex ?? range.startRowIndex,
         );
         const maxRowIndex = Math.max(
-          selectedRange.startRowIndex,
-          selectedRange.endRowIndex ?? selectedRange.startRowIndex,
+          range.startRowIndex,
+          range.endRowIndex ?? range.startRowIndex,
         );
         const minColumnIndex = Math.min(
-          selectedRange.startColumnIndex ?? 0,
-          selectedRange.endColumnIndex ?? selectedRange.startColumnIndex ?? 0,
+          range.startColumnIndex ?? 0,
+          range.endColumnIndex ?? range.startColumnIndex ?? 0,
         );
         const maxColumnIndex = Math.max(
-          selectedRange.startColumnIndex ?? 0,
-          selectedRange.endColumnIndex ?? selectedRange.startColumnIndex ?? 0,
+          range.startColumnIndex ?? 0,
+          range.endColumnIndex ?? range.startColumnIndex ?? 0,
         );
 
         for (let rowIndex = minRowIndex; rowIndex <= maxRowIndex; rowIndex += 1) {
@@ -94,7 +74,7 @@ function App(): JSX.Element {
   );
 
   const showSelection = useCallback(
-    (component: dxDataGrid, selectedRange: SelectedRange): void => {
+    (component: dxDataGrid, range: SelectedRange): void => {
       const selectedCells = component.element().querySelectorAll('.cell-selected');
 
       // Remove previously selected cells
@@ -105,7 +85,7 @@ function App(): JSX.Element {
       }
 
       // You can then get the cell's value here
-      foreachRange(selectedRange, (rowIndex, columnIndex) => {
+      foreachRange(range, (rowIndex, columnIndex) => {
         const cellElement = component.getCellElement(rowIndex, columnIndex);
         if (cellElement) {
           cellElement.classList.add('cell-selected');
@@ -114,6 +94,26 @@ function App(): JSX.Element {
     },
     [foreachRange],
   );
+
+  useEffect(() => {
+    const gridInstance = dataGrid.current?.instance();
+    if (!gridInstance) return;
+
+    const dataGridElement = gridInstance.element();
+    dataGridElement.addEventListener('touchmove', (args: TouchEvent) => {
+      const event = args.touches[0];
+      const element = document.elementFromPoint(
+        event.clientX,
+        event.clientY,
+      ) as HTMLElement;
+      const cellInfo = cellsInfo.filter((x) => x.cellElement === element)[0];
+      if (cellInfo) {
+        selectedRange.endRowIndex = cellInfo.rowIndex;
+        selectedRange.endColumnIndex = cellInfo.columnIndex;
+        showSelection(gridInstance, selectedRange);
+      }
+    });
+  }, [showSelection]);
 
   const onCellHoverChanged = useCallback(
     (e: DataGridTypes.CellHoverChangedEvent): void => {
@@ -168,10 +168,8 @@ function App(): JSX.Element {
   const onCellClick = useCallback(
     (e: DataGridTypes.CellClickEvent): void => {
       if (e.rowType !== 'data') return;
-      // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
       if (e.event && 'ctrlKey' in e.event && e.event.ctrlKey && 'shiftKey' in e.event && !e.event?.shiftKey) {
         // selects or deselects a single cell when Ctrl + Left Click
-        // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
         if (e.cellElement && e.cellElement.classList.contains('cell-selected')) {
           setData((prevData) => prevData.filter(
             (item) => !(item.rowIndex === e.rowIndex && item.columnIndex === e.columnIndex),
@@ -186,7 +184,6 @@ function App(): JSX.Element {
             e.cellElement.classList.add('cell-selected');
           }
         }
-      // eslint-disable-next-line @typescript-eslint/prefer-optional-chain
       } else if (
         e.event
         && 'ctrlKey' in e.event && !e.event.ctrlKey
