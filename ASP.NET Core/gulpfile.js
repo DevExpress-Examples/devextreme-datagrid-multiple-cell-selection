@@ -64,12 +64,12 @@ gulp.task("styles", gulp.series(["clean:css"], function () {
 }));
 
 gulp.task("fonts", gulp.series(["clean:fonts"], function () {
-    return gulp.src('./node_modules/devextreme-dist/css/fonts/*', { base: "." })
+    return gulp.src('./node_modules/devextreme-dist/css/fonts/*', { base: "./node_modules/devextreme-dist/css" })
         .pipe(gulp.dest(paths.webroot + "css"));
 }));
 
 gulp.task("icons", gulp.series(["clean:icons"], function () {
-    return gulp.src('./node_modules/devextreme-dist/css/icons/*', { base: "." })
+    return gulp.src('./node_modules/devextreme-dist/css/icons/*', { base: "./node_modules/devextreme-dist/css" })
         .pipe(gulp.dest(paths.webroot + "css"));
 }));
 
