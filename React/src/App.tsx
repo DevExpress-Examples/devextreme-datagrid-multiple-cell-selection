@@ -57,7 +57,6 @@ function App(): JSX.Element {
   }, []);
 
   const foreachRange = useCallback(
-    // eslint-disable-next-line no-unused-vars
     (selectedRange: SelectedRange, func: (rowIndex: number, columnIndex: number) => void): void => {
       const dataTemp: CellData[] = [];
       if (selectedRange.startRowIndex !== undefined && selectedRange.startRowIndex >= 0) {

@@ -80,7 +80,6 @@ onMounted((): void => {
 
 function foreachRange(
   range: SelectedRange,
-  // eslint-disable-next-line no-unused-vars
   func: (rowIndex: number, columnIndex: number) => void
 ): void {
   data.value = [];
