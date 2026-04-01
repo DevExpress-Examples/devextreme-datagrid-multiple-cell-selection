@@ -117,10 +117,10 @@ function App(): JSX.Element {
 
   const onCellHoverChanged = useCallback(
     (e: DataGridTypes.CellHoverChangedEvent): void => {
-      // CellHoverChangedEvent is triggered on hover, we'll track selection through mouse state
-      if (e.eventType === 'dxhoverstart' || e.eventType === 'dxhoverend') {
-        // For mouse drag selection, we need to check if mouse button is pressed
-        // This will be handled through the combination of cellClick and cellPrepared
+      const eventData = e as any;
+      if (!eventData.event) return;
+      const mouseEvent = eventData.event as MouseEvent;
+      if (mouseEvent.buttons === 1) {
         if (isSelectionStopped) {
           isSelectionStopped = false;
           selectedRange = {};
