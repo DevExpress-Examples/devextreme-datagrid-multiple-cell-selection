@@ -75,7 +75,6 @@ export class AppComponent implements AfterViewInit {
     const gridInstance = this.dataGrid.instance;
     if (!gridInstance) return '';
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return gridInstance.cellValue(info.rowIndex, info.columnIndex);
   }
 
@@ -122,7 +121,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   onCellHoverChanged(e: DxDataGridTypes.CellHoverChangedEvent<Customer, number>): void {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const eventData = e as any;
     if (!eventData.event) return;
 
